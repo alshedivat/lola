@@ -283,31 +283,26 @@ def train(env, *, num_episodes, trace_length, batch_size,
                         np.linalg.norm(theta_2_vals - theta_1_vals_clone))
 
             # Update policy networks
-            values, _, _, update1, update2 = sess.run(
-                [
-                    mainPN[0].value,
-                    mainPN[0].updateModel,
-                    mainPN[1].updateModel,
-                    mainPN[0].delta,
-                    mainPN[1].delta
-                ],
-                feed_dict={
-                    mainPN[0].state_input: state_input0,
-                    mainPN[0].sample_return: sample_return0,
-                    mainPN[0].actions: actions0,
-                    mainPN[1].state_input: state_input1,
-                    mainPN[1].sample_return: sample_return1,
-                    mainPN[1].actions: actions1,
-                    mainPN[0].sample_reward: sample_reward0,
-                    mainPN[1].sample_reward: sample_reward1,
-                    mainPN[0].gamma_array: np.reshape(discount, [1, -1]),
-                    mainPN[1].gamma_array: np.reshape(discount, [1, -1]),
-                    mainPN[0].next_value: value_0_next,
-                    mainPN[1].next_value: value_1_next,
-                    mainPN[0].gamma_array_inverse:
-                        np.reshape(discount_array, [1, -1]),
-                    mainPN[1].gamma_array_inverse:
-                        np.reshape(discount_array, [1, -1]),
+            feed_dict={
+                mainPN[0].state_input: state_input0,
+                mainPN[0].sample_return: sample_return0,
+                mainPN[0].actions: actions0,
+                mainPN[1].state_input: state_input1,
+                mainPN[1].sample_return: sample_return1,
+                mainPN[1].actions: actions1,
+                mainPN[0].sample_reward: sample_reward0,
+                mainPN[1].sample_reward: sample_reward1,
+                mainPN[0].gamma_array: np.reshape(discount, [1, -1]),
+                mainPN[1].gamma_array: np.reshape(discount, [1, -1]),
+                mainPN[0].next_value: value_0_next,
+                mainPN[1].next_value: value_1_next,
+                mainPN[0].gamma_array_inverse:
+                    np.reshape(discount_array, [1, -1]),
+                mainPN[1].gamma_array_inverse:
+                    np.reshape(discount_array, [1, -1]),
+            }
+            if opp_model:
+                feed_dict.update({
                     mainPN_clone[0].state_input:state_input1,
                     mainPN_clone[0].actions: actions1,
                     mainPN_clone[0].sample_return: sample_return1,
@@ -319,6 +314,15 @@ def train(env, *, num_episodes, trace_length, batch_size,
                     mainPN_clone[0].gamma_array: np.reshape(discount,[1,-1]),
                     mainPN_clone[1].gamma_array:  np.reshape(discount,[1,-1]),
                 })
+            values, _, _, update1, update2 = sess.run(
+                [
+                    mainPN[0].value,
+                    mainPN[0].updateModel,
+                    mainPN[1].updateModel,
+                    mainPN[0].delta,
+                    mainPN[1].delta
+                ],
+                feed_dict=feed_dict)
 
             update(mainPN, lr, update1 / bs_mul, update2 / bs_mul)
             updated = True
