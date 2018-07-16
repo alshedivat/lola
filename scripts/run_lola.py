@@ -67,12 +67,12 @@ def main(exp_name, num_episodes, trace_length, exact, pseudo, grid_size,
     elif exp_name in {"IPD", "IMP"}:
         num_episodes = 600000 if num_episodes is None else num_episodes
         trace_length = 150 if trace_length is None else trace_length
-        batch_size = 4000 if trace_length is None else trace_length
+        batch_size = 4000 if batch_size is None else batch_size
         lr = 1. if lr is None else lr
     elif exp_name == "CoinGame":
         num_episodes = 100000 if num_episodes is None else num_episodes
         trace_length = 150 if trace_length is None else trace_length
-        batch_size = 4000 if trace_length is None else trace_length
+        batch_size = 4000 if batch_size is None else batch_size
         lr = 0.005 if lr is None else lr
 
     # Import the right training function
