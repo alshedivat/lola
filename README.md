@@ -26,20 +26,30 @@ Contributions to further enhance and improve LOLA are welcome.
 LOLA:
 ```bibtex
 @inproceedings{foerster2018lola,
-  title={Learning with Opponent-Learning Awareness},
-  author={Foerster, Jakob N and Chen, Richard Y and Al-Shedivat, Maruan and Whiteson, Shimon and Abbeel, Pieter and Mordatch, Igor},
-  booktitle={Proceedings of the International Conference on Autonomous Agents and Multiagent Systems},
-  year={2018}
+  title={Learning with opponent-learning awareness},
+  author={Foerster, Jakob and Chen, Richard Y and Al-Shedivat, Maruan and Whiteson, Shimon and Abbeel, Pieter and Mordatch, Igor},
+  booktitle={Proceedings of the 17th International Conference on Autonomous Agents and MultiAgent Systems},
+  pages={122--130},
+  year={2018},
+  organization={International Foundation for Autonomous Agents and Multiagent Systems}
 }
 ```
 
 DiCE:
 ```bibtex
 @inproceedings{foerster2018dice,
-  title={DiCE: The Infinitely Differentiable Monte-Carlo Estimator},
-  author={Foerster, Jakob N and Farquhar, Greg and Al-Shedivat, Maruan and Rocktäschel, Tim and Xing, Eric P and Whiteson, Shimon},
-  booktitle={Proceedings of the International Conference on Machine Learning},
-  year={2018}
+  title={{D}i{CE}: The Infinitely Differentiable {M}onte {C}arlo Estimator},
+  author={Foerster, Jakob and Farquhar, Gregory and Al-Shedivat, Maruan and Rockt{\"a}schel, Tim and Xing, Eric and Whiteson, Shimon},
+  booktitle ={Proceedings of the 35th International Conference on Machine Learning},
+  pages={1524--1533},
+  year={2018},
+  volume={80},
+  series={Proceedings of Machine Learning Research},
+  address={Stockholmsmässan, Stockholm Sweden},
+  month={10--15 Jul},
+  publisher={PMLR},
+  pdf={http://proceedings.mlr.press/v80/foerster18a/foerster18a.pdf},
+  url={http://proceedings.mlr.press/v80/foerster18a.html},
 }
 ```
 
