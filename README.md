@@ -4,6 +4,10 @@ Learning with Opponent-Learning Awareness
 Implements the LOLA ([AAMAS'18](https://arxiv.org/abs/1709.04326)) and LOLA-DiCE ([ICML'18](https://arxiv.org/abs/1802.05098)) algorithms.
 
 
+Further resources: 
+A pytorch implementation of LOLA-DiCE is available at https://github.com/alexis-jacq/LOLA_DiCE.
+A colab notebook with the nummerical evalution for DiCE is available at https://goo.gl/xkkGxN.
+
 ## Installation
 
 To run the code, you need to pip-install it as follows:
