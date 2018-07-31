@@ -23,8 +23,10 @@ Use `run_lola.py` and `run_tournament.py` for running experiments from the [AAMA
 Use `run_lola_dice.py` for reproducing experiments from the [ICML'18 paper](https://arxiv.org/abs/1802.05098).
 Check out `notebooks/` for IPython notebooks with plots.
 
+Note this code is not tested on GPU, so there might be unexpected issues.
+
 *Disclaimer:* This is a research code release that has not been tested beyond the use cases and experiments discussed in the original papers.
-Contributions to further enhance and improve LOLA are welcome.
+Contributions to further enhance and improve the code are welcome, please email jakob.foerster at cs.ox.ac.uk and alshedivat at cs.cmu.edu with comments and suggestions. 
 
 
 ## Citations
