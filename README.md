@@ -5,7 +5,9 @@ Implements the LOLA ([AAMAS'18](https://arxiv.org/abs/1709.04326)) and LOLA-DiCE
 
 
 Further resources: 
+
 A pytorch implementation of LOLA-DiCE is available at https://github.com/alexis-jacq/LOLA_DiCE.
+
 A colab notebook with the nummerical evalution for DiCE is available at https://goo.gl/xkkGxN.
 
 ## Installation
