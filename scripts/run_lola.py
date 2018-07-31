@@ -30,7 +30,7 @@ from lola.envs import *
 @click.option("--opp_model/--no-opp_model", default=False,
               help="Whether to model opponent or use true parameters "
                    "(use only for coin game).")
-@click.option("--mem_efficient/--no-mem_efficient", default=False,
+@click.option("--mem_efficient/--no-mem_efficient", default=True,
               help="Use a more memory efficient corrections method.")
 @click.option("--lr", type=float, default=None,
               help="Learning rate for Adam optimizer.")
