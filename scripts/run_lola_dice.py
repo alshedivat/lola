@@ -14,7 +14,7 @@ from lola_dice.rpg import train
               help="Whether to use the DiCE operator in the policy objective.")
 @click.option("--use-opp-modeling/--no-opp-modeling", default=False,
               help="Whether to use opponent modeling.")
-@click.option("--batch-size", default=512)
+@click.option("--batch-size", default=64)
 @click.option("--epochs", default=200)
 @click.option("--runs", default=5)
 @click.option("--save-dir", default="results_ipd")
@@ -36,7 +36,7 @@ def main(use_dice, use_opp_modeling, epochs, batch_size, runs, save_dir):
         train(env, make_simple_policy, make_sgd_optimizer,
               epochs=epochs,
               gamma=.96,
-              lr_inner=.3,
+              lr_inner=.1,
               lr_outer=.2,
               lr_value=.1,
               lr_om=.1,
@@ -46,7 +46,7 @@ def main(use_dice, use_opp_modeling, epochs, batch_size, runs, save_dir):
               value_batch_size=16,
               value_epochs=0,
               om_batch_size=16,
-              om_epochs=5,
+              om_epochs=0,
               use_baseline=False,
               use_dice=use_dice,
               use_opp_modeling=use_opp_modeling,
