@@ -17,14 +17,14 @@ class FrameStack(ObservationWrapper):
         self.frames = deque([], maxlen=k)
         self.k = k
 
-    def _reset(self, **kwargs):
+    def reset(self, **kwargs):
         observation, info = self.env.reset(**kwargs)
         for _ in range(self.k):
             self.frames.append(observation)
         observation = list(map(self.concat, zip(*list(self.frames))))
         return observation, info
 
-    def _step(self, action):
+    def step(self, action):
         observation, reward, done, info = self.env.step(action)
         self.frames.append(observation)
         observation = list(map(self.concat, zip(*list(self.frames))))

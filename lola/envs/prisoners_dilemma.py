@@ -29,14 +29,14 @@ class IteratedPrisonersDilemma(gym.Env):
 
         self.step_count = None
 
-    def _reset(self):
+    def reset(self):
         self.step_count = 0
         init_state = np.zeros(self.NUM_STATES)
         init_state[-1] = 1
         observations = [init_state, init_state]
         return observations
 
-    def _step(self, action):
+    def step(self, action):
         ac0, ac1 = action
 
         self.step_count += 1
