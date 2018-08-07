@@ -59,6 +59,7 @@ class CoinGameVec(gym.Env):
     def _generate_coin(self, i):
         self.red_coin[i] = 1 - self.red_coin[i]
         # Make sure coin has a different position than the agent
+        success = 0
         while success < 2:
             success = 0
             self.coin_pos[i] = prng.np_random.randint(self.grid_size, size=(2))
