@@ -58,9 +58,10 @@ class CoinGameVec(gym.Env):
 
     def _generate_coin(self, i):
         self.red_coin[i] = 1 - self.red_coin[i]
-        # Make sure coin has a different position than the agents
+        # Make sure coin has a different position than the agent
         success = 0
         while success < 2:
+            success = 0
             self.coin_pos[i] = prng.np_random.randint(self.grid_size, size=(2))
             success  = 1 - self._same_pos(self.red_pos[i],
                                           self.coin_pos[i])
@@ -97,38 +98,31 @@ class CoinGameVec(gym.Env):
                 (self.blue_pos[j] + self.MOVES[a1]) % self.grid_size
 
         # Compute rewards
-        reward_red, reward_blue = [], []
+        reward_red = np.zeros(self.batch_size)
+        reward_blue = np.zeros(self.batch_size)
         for i in range(self.batch_size):
             generate = False
             if self.red_coin[i]:
                 if self._same_pos(self.red_pos[i], self.coin_pos[i]):
                     generate = True
-                    reward_red.append(1)
-                    reward_blue.append(0)
-                elif self._same_pos(self.blue_pos[i], self.coin_pos[i]):
+                    reward_red[i] += 1
+                if self._same_pos(self.blue_pos[i], self.coin_pos[i]):
                     generate = True
-                    reward_red.append(-2)
-                    reward_blue.append(1)
-                else:
-                    reward_red.append(0)
-                    reward_blue.append(0)
+                    reward_red[i] += -2
+                    reward_blue[i] += 1
             else:
                 if self._same_pos(self.red_pos[i], self.coin_pos[i]):
                     generate = True
-                    reward_red.append(1)
-                    reward_blue.append(-2)
-                elif self._same_pos(self.blue_pos[i], self.coin_pos[i]):
+                    reward_red[i] += 1
+                    reward_blue[i] += -2
+                if self._same_pos(self.blue_pos[i], self.coin_pos[i]):
                     generate = True
-                    reward_red.append(0)
-                    reward_blue.append(1)
-                else:
-                    reward_red.append(0)
-                    reward_blue.append(0)
+                    reward_blue[i] += 1
 
             if generate:
                 self._generate_coin(i)
 
-        reward = [np.array(reward_red), np.array(reward_blue)]
+        reward = [reward_red, reward_blue]
         state = self._generate_state().reshape((self.batch_size, -1))
         observations = [state, state]
         done = (self.step_count == self.max_steps)
